@@ -1,5 +1,5 @@
 require_relative 'config/environment'
 
-map '/ads' do
-  run AdRoutes
+map '/geocoder' do
+  run GeocoderRoutes
 end
