@@ -6,7 +6,13 @@ module Geocoder
   DATA_PATH = Application.root.concat('/db/data/city.csv')
 
   def geocode(city)
-    data[city]
+    start_time = Time.now.to_f
+    result = data[city]
+    duration_time = (Time.now.to_f - start_time) * 1000
+
+    Metrics.geocoding_duration.observe(duration_time.round, labels: { city: city })
+
+    result
   end
 
   def data
